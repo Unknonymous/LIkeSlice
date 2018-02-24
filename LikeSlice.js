@@ -4,7 +4,13 @@ function slicet(InString,start, end){
     var newArr = [];
     var newString = "";
     
-    if (typeof end != "number"){
+    // handle negative start value & missing end value
+    if (typeof end != "number" && start < 0 ){
+        start = InString.length + start;
+        end = InString.length;
+    }
+    // handles missing end value 
+    else if (typeof end != "number"){
         end = InString.length;
     }
 
@@ -17,11 +23,11 @@ function slicet(InString,start, end){
     }
     
     // loop through the new array & concat values into a new string
-    for (var i = 0; i < newArr.length; i++){
-        newString += newArr[i];
+    for (var h = 0; h < newArr.length; h++){
+        newString += newArr[h];
     }
 
-    // output the new string
+    // output the new String
     //console.log(newString);
     return(newString);
 }
@@ -31,6 +37,6 @@ var string1 = "There is a blue car.";
 var string2 = "prestidigitation";
 
 
-console.log ('Test: ' + string1.slice(6));
+console.log ('Test: ' + string1.slice(-2));
 
-console.log ('Result: ' + slicet(string1, 6));
+console.log ('Result: ' + slicet(string1, -2));
